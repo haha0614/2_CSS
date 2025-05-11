@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CSS_元素的显示模式</title>
+    <style>
+        .i {
+            width: 0px;
+        }
+
+        #d1 {
+            background-color: skyblue;
+        }
+
+        #d2 {
+            background-color: orange;
+        }
+
+        #d3 {
+            background-color: green;
+        }
+
+        .one {
+            background-color: skyblue;
+        }
+
+        .two {
+            background-color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <!--
+        块元素（block）
+        又称：块级元素
+        特点：
+        1. 在页面中独占一行，不会与任何元素共用一行，是从上到下排列的。
+        2. 默认宽度：撑满父元素。
+        3. 默认高度：由内容撑开。
+        4. 可以通过CSS 设置宽高。
+    -->
+    <div id="d1">山回路转不见君</div>
+    <div id="d2">雪上空留马行处</div>
+    <div id="d3">风里雨里我在家里等你</div>
+    <img src="../images/16_02_块.png" class="i">
+    <!--
+        1. 主体结构标签：<html>、<body>
+        2. 排版标签：<h1>~<h6>、<hr>、<p>、<pre>、<div>
+        3. 列表标签：<ul>、<ol>、<li>、<dl>、<dt>、<dd>
+        4. 表格相关标签：<table>、<tbody>、<thead>、<caption>
+        5. <form>与<option>
+    -->
+    <hr>
+    <!--
+        行内元素（inline）
+        又称：内联元素
+        特点:
+        1. 在页面中不独占一行，一行中不能容纳下的行内元素，会在下一行继续从左到右排列。
+        2. 默认宽度：由内容撑开。
+        3. 默认高度：由内容撑开。
+        4. 无法通过CSS 设置宽高。
+    -->
+    <span class="one">人之初</span>
+    <span class="two">性本善</span>
+    <!--
+        1.文本标签：<br>、<em>、<strong>、<sup>、<sub>、<del>、<ins>
+        2.<a>与<label>
+    -->
+    <hr>
+    <!--
+        行内块元素（inline-block）
+        又称：内联块元素
+        特点：
+        1. 在页面中不独占一行，一行中不能容纳下的行内元素，会在下一行继续从左到右排列。
+        2. 默认宽度：由内容撑开。
+        3. 默认高度：由内容撑开。
+        4. 可以通过CSS 设置宽高。
+    -->
+    <img src="../images/悟空.jpg" alt="悟空">
+    <img src="../images/悟空.jpg" alt="悟空">
+    <img src="../images/悟空.jpg" alt="悟空">
+    <!--
+        1.图片：<img>
+        2.单元格：<td>、<th>
+        3.表单控件：<input>、<testarea>、<select>、<button>
+        4.框架标签：<iframe>
+    -->
+    <!--
+        注意：元素早期只分为：行内元素、块级元素，
+        区分条件也只有一条："是否独占一行"，
+        如果按照这种分类方式，行内块元素应该算作行内元素
+    -->
+</body>
+
+</html>

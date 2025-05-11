@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<!-- 创建时间：2025年04月23日 12:12:35:57 -->
+	<meta charset="UTF-8">
+	<title>细说font-size</title>
+	<style>
+		div {
+			font-size: 40px;
+			background-color: skyblue;
+		}
+	</style>
+</head>
+<body>
+	<div>atguigu尚硅谷</div>
+	<!--
+	 1. 由于字体设计原因，文字最终呈现的大小，并不一定与font-size的值一致，可能大，也可能小。
+	    例如：font-size设为40px，最终呈现的文字，可能比40px大，也可能比40px小。
+	 2. 通常情况下，文字相对字体设计框，并不是垂直居中的，通常都靠下一些
+	 -->
+	<span style="font-size: 40px; font-family: 'Microsoft YaHei UI', sans-serif;">尚</span>
+	<span style="font-size: 40px; font-family: 'vivo Sans', sans-serif;">尚</span>
+	<span style="font-size: 40px; font-family: '隶书', sans-serif;">尚</span>
+</body>
+</html>

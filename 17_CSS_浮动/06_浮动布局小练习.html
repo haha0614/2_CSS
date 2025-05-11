@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>浮动布局小练习</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .leftfix {
+            float: left;
+        }
+
+        .rightfix {
+            float: right;
+        }
+
+        .clearfix::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .container {
+            width: 960px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .page_header {
+            overflow: hidden;
+        }
+
+        .logo,
+        .banner1,
+        .banner2 {
+            height: 80px;
+            line-height: 80px;
+            background-color: hsl(0, 0%, 87%);
+        }
+
+        .logo,
+        .banner2 {
+            width: 200px;
+        }
+
+        .banner1 {
+            width: 540px;
+            margin: 0 10px;
+        }
+
+        .menu {
+            width: 960px;
+            background-color: #dedede;
+            margin: 10px 0;
+            height: 30px;
+            line-height: 30px;
+        }
+
+        .content_inner_left {
+            width: 760px;
+        }
+
+        .content_inner_right {
+            width: 200px;
+        }
+
+        .item1,
+        .item2 {
+            width: 368px;
+            height: 198px;
+            margin-right: 10px;
+            line-height: 198px;
+            border: 1px solid black;
+        }
+
+        .content_inner_left_top {
+            margin-bottom: 10px;
+        }
+
+        .item3,
+        .item4,
+        .item5,
+        .item6 {
+            height: 198px;
+            width: 178px;
+            margin-right: 10px;
+            line-height: 198px;
+            border: 1px solid black;
+        }
+
+        .item7,
+        .item8,
+        .item9 {
+            height: 128px;
+            width: 198px;
+            line-height: 128px;
+            border: 1px solid black;
+        }
+
+        .item8 {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .foot {
+            width: 960px;
+            height: 60px;
+            margin: 10px 0;
+            line-height: 60px;
+            background-color: rgb(222, 222, 222);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="clearfix page_header">
+            <div class="leftfix logo">logo</div>
+            <div class="leftfix banner1">banner1</div>
+            <div class="leftfix banner2">banner2</div>
+        </div>
+
+        <div class="menu">菜单</div>
+
+        <div class="clearfix">
+            <div class="leftfix content_inner_left">
+                <div class="content_inner_left_top clearfix">
+                    <div class="leftfix item item1">栏目一</div>
+                    <div class="leftfix item item2">栏目二</div>
+                </div>
+                <div class="content_inner_left_bottom clearfix">
+                    <div class="leftfix item3">栏目三</div>
+                    <div class="leftfix item4">栏目四</div>
+                    <div class="leftfix item5">栏目五</div>
+                    <div class="leftfix item6">栏目六</div>
+                </div>
+            </div>
+
+            <div class="leftfix content_inner_right">
+                <div class="item7">栏目七</div>
+                <div class="item8">栏目八</div>
+                <div class="item9">栏目九</div>
+            </div>
+        </div>
+
+        <div class="foot">页脚</div>
+    </div>
+
+</body>
+
+</html>

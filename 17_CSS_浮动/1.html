@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>未来科技展示平台</title>
+    <style>
+        /* 基础样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+
+        :root {
+            --primary-color: #6c5ce7;
+            --secondary-color: #00cec9;
+            --accent-color: #fd79a8;
+            --dark-color: #2d3436;
+            --light-color: #dfe6e9;
+        }
+
+        body {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* 背景动画效果 */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .background-animation span {
+            position: absolute;
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            animation: move 25s linear infinite;
+            border-radius: 50%;
+        }
+
+        .background-animation span:nth-child(1) {
+            top: 10%;
+            left: 20%;
+            animation-duration: 15s;
+            background: rgba(108, 92, 231, 0.2);
+            width: 80px;
+            height: 80px;
+        }
+
+        .background-animation span:nth-child(2) {
+            top: 60%;
+            left: 80%;
+            animation-duration: 25s;
+            background: rgba(0, 206, 201, 0.2);
+            width: 100px;
+            height: 100px;
+        }
+
+        .background-animation span:nth-child(3) {
+            top: 40%;
+            left: 40%;
+            animation-duration: 20s;
+            background: rgba(253, 121, 168, 0.2);
+            width: 150px;
+            height: 150px;
+        }
+
+        .background-animation span:nth-child(4) {
+            top: 80%;
+            left: 10%;
+            animation-duration: 18s;
+            background: rgba(255, 234, 167, 0.2);
+            width: 120px;
+            height: 120px;
+        }
+
+        .background-animation span:nth-child(5) {
+            top: 20%;
+            left: 70%;
+            animation-duration: 22s;
+            background: rgba(99, 110, 114, 0.2);
+            width: 60px;
+            height: 60px;
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateX(0) translateY(0) rotate(0deg) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateX(500px) translateY(500px) rotate(360deg) scale(0.5);
+                opacity: 0.3;
+            }
+        }
+
+        /* 导航栏样式 */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            background: rgba(45, 52, 54, 0.8);
+        }
+
+        .navbar.scrolled {
+            padding: 1rem 5%;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--light-color);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* 英雄区域样式 */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradient-shift 8s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradient-shift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            color: rgba(223, 230, 233, 0.8);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--light-color);
+            border: 2px solid var(--secondary-color);
+            box-shadow: 0 4px 15px rgba(0, 206, 201, 0.2);
+        }
+
+        /* 特性部分样式 */
+        .features {
+            padding: 6rem 5%;
+            background: linear-gradient(180deg, var(--dark-color), #1e272e);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        .section-title p {
+            color: rgba(223, 230, 233, 0.7);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(45, 52, 54, 0.5);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--light-color);
+        }
+
+        .feature-card p {
+            color: rgba(223, 230, 233, 0.7);
+            line-height: 1.6;
+        }
+
+        /* 项目展示部分 */
+        .projects {
+            padding: 6rem 5%;
+            background: linear-gradient(180deg, #1e272e, var(--dark-color));
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            height: 250px;
+            cursor: pointer;
+        }
+
+        .project-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .project-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: linear-gradient(to top, rgba(45, 52, 54, 0.9), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            transition: all 0.5s ease;
+            opacity: 0;
+        }
+
+        .project-card:hover .project-overlay {
+            height: 100%;
+            opacity: 1;
+        }
+
+        .project-card:hover .project-img {
+            transform: scale(1.1);
+        }
+
+        .project-overlay h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--light-color);
+        }
+
+        .project-overlay p {
+            color: rgba(223, 230, 233, 0.8);
+            margin-bottom: 1rem;
+        }
+
+        .project-link {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            position: relative;
+        }
+
+        .project-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+
+        .project-link:hover::after {
+            width: 100%;
+        }
+
+        /* 联系部分 */
+        .contact {
+            padding: 6rem 5%;
+            background: linear-gradient(180deg, var(--dark-color), #121212);
+            position: relative;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .contact-text h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+            color: var(--light-color);
+        }
+
+        .contact-text p {
+            color: rgba(223, 230, 233, 0.7);
+        }
+
+        .contact-form {
+            background: rgba(45, 52, 54, 0.5);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--light-color);
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(45, 52, 54, 0.8);
+            color: var(--light-color);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 2px rgba(0, 206, 201, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* 页脚样式 */
+        .footer {
+            padding: 2rem 5%;
+            background: #121212;
+            text-align: center;
+        }
+
+        .footer p {
+            color: rgba(223, 230, 233, 0.5);
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(45, 52, 54, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            transform: translateY(-3px);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* 加载动画 */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            border-top-color: var(--secondary-color);
+            animation: spin 1s ease-in-out infinite;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loader-text {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 加载动画 -->
+    <div class="loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <div class="loader-text">加载中...</div>
+        </div>
+    </div>
+
+    <!-- 背景动画 -->
+    <div class="background-animation">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="logo">TECH<span style="color: var(--secondary-color);">NOVA</span></div>
+        <div class="nav-links">
+            <a href="#home">首页</a>
+            <a href="#features">特性</a>
+            <a href="#projects">项目</a>
+            <a href="#contact">联系我们</a>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>未来科技，现在体验</h1>
+            <p>我们致力于创造前沿的数字体验，将创新技术与卓越设计相结合，打造令人惊叹的数字产品。</p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">探索项目</a>
+                <a href="#contact" class="btn btn-secondary">联系我们</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 特性部分 -->
+    <section class="features" id="features">
+        <div class="section-title">
+            <h2>我们的核心优势</h2>
+            <p>利用最新技术和创新方法，我们为客户提供卓越的数字解决方案</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🚀</div>
+                <h3>高性能设计</h3>
+                <p>我们的设计不仅美观，而且高效。每一个像素都经过精心优化，确保最佳的用户体验。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💡</div>
+                <h3>创新解决方案</h3>
+                <p>我们不断探索新技术和方法，为客户提供创新的解决方案，帮助他们在数字世界中脱颖而出。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>安全可靠</h3>
+                <p>安全是我们的首要任务。我们的产品采用最先进的安全措施，保护您的数据和隐私。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>全平台适配</h3>
+                <p>无论是桌面、平板还是手机，我们的设计都能完美适配各种设备，提供一致的用户体验。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>快速响应</h3>
+                <p>我们的团队随时准备响应您的需求，提供及时的支持和解决方案。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌐</div>
+                <h3>全球视野</h3>
+                <p>我们的团队来自世界各地，拥有全球视野和多元文化背景，为您的项目带来独特的视角。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 项目展示部分 -->
+    <section class="projects" id="projects">
+        <div class="section-title">
+            <h2>精选项目</h2>
+            <p>探索我们的最新作品，了解我们如何将创意转化为现实</p>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card">
+                <img src="https://source.unsplash.com/random/600x400/?tech" alt="项目图片" class="project-img">
+                <div class="project-overlay">
+                    <h3>智能家居系统</h3>
+                    <p>一个革命性的智能家居控制系统，让您的生活更加便捷。</p>
+                    <a href="#" class="project-link">查看详情</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="https://source.unsplash.com/random/600x400/?app" alt="项目图片" class="project-img">
+                <div class="project-overlay">
+                    <h3>健康追踪应用</h3>
+                    <p>帮助用户监控健康状况，提供个性化的健康建议。</p>
+                    <a href="#" class="project-link">查看详情</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="https://source.unsplash.com/random/600x400/?website" alt="项目图片" class="project-img">
+                <div class="project-overlay">
+                    <h3>电子商务平台</h3>
+                    <p>为中小企业打造的高效电子商务解决方案。</p>
+                    <a href="#" class="project-link">查看详情</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="https://source.unsplash.com/random/600x400/?ai" alt="项目图片" class="project-img">
+                <div class="project-overlay">
+                    <h3>AI助手</h3>
+                    <p>基于人工智能的虚拟助手，提高工作效率。</p>
+                    <a href="#" class="project-link">查看详情</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系部分 -->
+    <section class="contact" id="contact">
+        <div class="section-title">
+            <h2>联系我们</h2>
+            <p>有任何问题或合作意向？请随时与我们联系</p>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-text">
+                        <h4>地址</h4>
+                        <p>北京市朝阳区科技园区88号</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <div class="contact-text">
+                        <h4>电话</h4>
+                        <p>+86 10 8888 8888</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <div class="contact-text">
+                        <h4>邮箱</h4>
+                        <p>contact@technova.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">⏰</div>
+                    <div class="contact-text">
+                        <h4>工作时间</h4>
+                        <p>周一至周五: 9:00 - 18:00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <div class="form-group">
+                    <label for="name">姓名</label>
+                    <input type="text" id="name" class="form-control" placeholder="请输入您的姓名">
+                </div>
+                <div class="form-group">
+                    <label for="email">邮箱</label>
+                    <input type="email" id="email" class="form-control" placeholder="请输入您的邮箱">
+                </div>
+                <div class="form-group">
+                    <label for="subject">主题</label>
+                    <input type="text" id="subject" class="form-control" placeholder="请输入主题">
+                </div>
+                <div class="form-group">
+                    <label for="message">消息</label>
+                    <textarea id="message" class="form-control" placeholder="请输入您的消息"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">发送消息</button>
+            </div>
+        </div>
+    </section>
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="social-links">
+            <a href="#" class="social-link">
+                <i>🌐</i>
+            </a>
+            <a href="#" class="social-link">
+                <i>📱</i>
+            </a>
+            <a href="#" class="social-link">
+                <i>📷</i>
+            </a>
+            <a href="#" class="social-link">
+                <i>🐦</i>
+            </a>
+        </div>
+        <p>&copy; 2023 TECHNOVA. 保留所有权利。</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 页面加载完成后隐藏加载动画
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                document.querySelector('.loader').classList.add('hidden');
+            }, 1500);
+        });
+
+        // 滚动时导航栏效果
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // 添加视差滚动效果
+        window.addEventListener('scroll', function () {
+            const scrolled = window.scrollY;
+            document.querySelectorAll('.background-animation span').forEach((element, index) => {
+                const speed = 0.1 + (index * 0.05);
+                element.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // 添加动画效果
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // 为特性卡片和项目卡片添加动画
+        document.querySelectorAll('.feature-card, .project-card').forEach(card => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(50px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+
+        // 为表单添加交互效果
+        document.querySelectorAll('.form-control').forEach(input => {
+            input.addEventListener('focus', function () {
+                this.parentElement.classList.add('focused');
+            });
+            input.addEventListener('blur', function () {
+                if (this.value === '') {
+                    this.parentElement.classList.remove('focused');
+                }
+            });
+        });
+
+        // 添加3D悬停效果
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mousemove', function (e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const xPercent = x / rect.width;
+                const yPercent = y / rect.height;
+
+                const rotateX = (0.5 - yPercent) * 10;
+                const rotateY = (xPercent - 0.5) * 10;
+
+                this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+
+            card.addEventListener('mouseleave', function () {
+                this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+            });
+        });
+
+        // 添加打字机效果
+        function typeWriter(element, text, speed = 50, delay = 0) {
+            setTimeout(() => {
+                let i = 0;
+                const typing = setInterval(() => {
+                    if (i < text.length) {
+                        element.innerHTML += text.charAt(i);
+                        i++;
+                    } else {
+                        clearInterval(typing);
+                    }
+                }, speed);
+            }, delay);
+        }
+
+        // 页面加载完成后应用打字机效果
+        window.addEventListener('DOMContentLoaded', function () {
+            const heroTitle = document.querySelector('.hero h1');
+            const originalText = heroTitle.textContent;
+            heroTitle.textContent = '';
+
+            setTimeout(() => {
+                typeWriter(heroTitle, originalText, 100);
+            }, 2000);
+        });
+    </script>
+</body>
+
+</html>

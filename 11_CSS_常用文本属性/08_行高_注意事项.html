@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<!-- 创建时间：2025年04月23日 12:55:07:479 -->
+	<meta charset="UTF-8">
+	<title>行高_注意事项</title>
+	<style>
+		#d1 {
+			/* 注意点1：行高过小，文字会重叠，且最小值是0，不能为负数。 */
+			font-size: 40px;
+			background-color: skyblue;
+			line-height: 0px;
+		}
+		
+		/* #d2 { */
+		/* 	!* 注意点2：行高是可以继承的 *! */
+		/* 	font-size: 40px; */
+		/* 	background-color: orange; */
+		/* 	line-height: 1.5; */
+		/* } */
+		
+		/* span { */
+		/* 	font-size: 200px; */
+		/* 	color: red; */
+		/* } */
+		
+		/* #d3 { */
+		/* 	!* */
+		/* 	注意点3：line-height和height是什么关系 */
+		/* 	设置了height，高度就是height的值 */
+		/* 	没有设置height，高度就是line-height*行数 */
+		/* 	 *! */
+		/* 	font-size: 40px; */
+		/* 	background-color: yellowgreen; */
+		/* 	line-height: 100px; */
+		/* 	height: 300px; */
+		/* } */
+		
+		/* #d4 { */
+		/* 	!* */
+		/* 	注意点3：line-height和height是什么关系 */
+		/* 	设置了height，高度就是height的值 */
+		/* 	没有设置height，高度就是line-height*行数 */
+		/* 	 *! */
+		/* 	font-size: 40px; */
+		/* 	background-color: skyblue; */
+		/* 	line-height: 0px; */
+		/* } */
+		
+		
+		#d5 {
+			/*
+			行高的应用场景1：调整多行文字的间距
+			 */
+			font-size: 40px;
+			background-color: skyblue;
+			line-height: 100px;
+		}
+		
+		#d6 {
+			/*
+			行高的应用场景2：单行文字的垂直居中
+			 */
+			font-size: 40px;
+			background-color: skyblue;
+			height: 300px;
+			line-height: 300px;
+		}
+	</style>
+</head>
+<body>
+	<!-- <div id="d1"> -->
+	<!-- 	atguigu尚硅谷让天下没有难学的技术atguigu尚硅谷让天下没有难学的技术atguigu尚硅谷让天下没有难学的技术atguigu尚硅谷让天下没有难学的技术atguigu尚硅谷让天下没有难学的技术atguigu尚硅谷让天下没有难学的技术 -->
+	<!-- </div> -->
+	<!-- <div id="d2"> -->
+	<!-- 	atguigu尚硅谷让天下没有难学的技术atguigu尚硅谷让天下没有难学的技术atguigu尚硅谷让天下没有难学的技术atguigu<span>尚硅谷</span>让天下没有难学的技术atguigu尚硅谷让天下没有难学的技术atguigu尚硅谷让天下没有难学的技术 -->
+	<!-- </div> -->
+	<!-- <div id="d3"> -->
+	<!-- 	atguigu尚硅谷让天下没有难学的技术 -->
+	<!-- </div> -->
+	<!-- <div id="d4"> -->
+	<!-- 	atguigu尚硅谷让天下没有难学的技术atguigu尚硅谷让天下没有难学的技术atguigu尚硅谷让天下没有难学的技术atguigu尚硅谷让天下没有难学的技术atguigu尚硅谷让天下没有难学的技术 -->
+	<!-- </div> -->
+	<!-- <div id="d5"> -->
+	<!-- 	atguigu尚硅谷让天下没有难学的技术atguigu尚硅谷让天下没有难学的技术atguigu尚硅谷让天下没有难学的技术atguigu尚硅谷让天下没有难学的技术atguigu尚硅谷让天下没有难学的技术 -->
+	<!-- </div> -->
+	<div id="d6">
+		atguigu尚硅谷让天下没有难学的技术
+	</div>
+</body>
+</html>

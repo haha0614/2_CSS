@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>行内块的幽灵空白问题</title>
+    <style>
+        div {
+            width: 600px;
+            background-color: skyblue;
+
+            /* 同display解决方案 */
+            /* font-size: 0; */
+        }
+
+        img {
+            /* 最好的解决方案 */
+            vertical-align: bottom;
+
+            /* 具有局限性，不能有其他文字存在 */
+            /* display: block; */
+
+
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <img src="../images/悟空.jpg" alt="">
+    </div>
+</body>
+
+</html>

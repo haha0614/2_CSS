@@ -1,0 +1,24 @@
+{
+    "files.autoSave": "onFocusChange",
+    "editor.fontSize": 18,
+    "editor.fontFamily": "'JetBrains Mono'",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.cursorBlinking": "expand",
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.cursorStyle": "line",
+    "editor.cursorSurroundingLines": 0,
+    "editor.formatOnType": true,
+    "diffEditor.codeLens": false,
+    "editor.minimap.enabled": true,
+    "files.trimFinalNewlines": false,
+    "files.trimTrailingWhitespace": true,
+    "workbench.layoutControl.type": "both",
+    "workbench.reduceMotion": "off",
+    "workbench.preferredDarkColorTheme": "Dark",
+    "workbench.iconTheme": "material-icon-theme",
+    "window.autoDetectColorScheme": false,
+    "emmet.preferences": {
+
+    }
+}

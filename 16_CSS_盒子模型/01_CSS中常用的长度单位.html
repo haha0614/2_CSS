@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<!-- 创建时间：2025年04月27日 23:20:10:35 -->
+	<meta charset="UTF-8">
+	<title>CSS中常用的长度单位</title>
+	<style>
+		#d1 {
+			/* 第一种长度单位：px像素 */
+			width: 200px;
+			height: 200px;
+			font-size: 20px;
+			background-color: skyblue;
+		}
+
+		#d2 {
+			/* 第二种长度单位：em（相对于当前元素或其父元素的font-size的倍数） */
+			width: 200em;
+			height: 200em;
+			font-size: 20px;
+			background-color: skyblue;
+		}
+
+		#d3 {
+			/* 第三种长度单位：rem（相对于根元素的font-size的倍数） */
+			width: 10rem;
+			height: 10rem;
+			font-size: 20px;
+			background-color: skyblue;
+		}
+
+		#d4 {
+			width: 200px;
+			height: 200px;
+			font-size: 20px;
+			background-color: gray;
+		}
+
+		.inside {
+			/* 第四种长度单位：%（相对于其父元素的百分比） */
+			width: 50%;
+			height: 25%;
+			font-size: 20px;
+			background-color: orange;
+		}
+
+		#test {
+			font-size: 20px;
+			text-indent: 2em;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="d1">1</div>
+	<hr>
+	<div id="d2">2</div>
+	<hr>
+	<div id="d3">3</div>
+	<hr>
+	<div id="d4">
+		<div class="inside"></div>
+	</div>
+	<hr>
+	<div id="test">
+		好好学习，天天向上
+	</div>
+</body>
+
+</html>

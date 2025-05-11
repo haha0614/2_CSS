@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube风格页面</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f9f9f9;
+        }
+
+        /* 顶部导航栏 */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 16px;
+            height: 56px;
+            background-color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-icon {
+            margin-right: 16px;
+            cursor: pointer;
+        }
+
+        .logo {
+            color: #ff0000;
+            font-weight: bold;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-container {
+            flex: 1;
+            max-width: 640px;
+            margin: 0 40px;
+            display: flex;
+        }
+
+        .search-input {
+            flex: 1;
+            height: 40px;
+            padding: 0 12px;
+            border: 1px solid #ccc;
+            border-radius: 2px 0 0 2px;
+            font-size: 16px;
+        }
+
+        .search-btn {
+            width: 64px;
+            height: 40px;
+            background-color: #f8f8f8;
+            border: 1px solid #ccc;
+            border-left: none;
+            border-radius: 0 2px 2px 0;
+            cursor: pointer;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-icon {
+            margin-left: 24px;
+            cursor: pointer;
+        }
+
+        /* 侧边栏 */
+        .sidebar {
+            width: 240px;
+            background-color: white;
+            position: fixed;
+            top: 56px;
+            left: 0;
+            bottom: 0;
+            overflow-y: auto;
+            padding: 12px 0;
+            z-index: 90;
+        }
+
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 24px;
+            cursor: pointer;
+        }
+
+        .sidebar-item:hover {
+            background-color: #f2f2f2;
+        }
+
+        .sidebar-icon {
+            margin-right: 24px;
+        }
+
+        /* 主内容区 */
+        .content {
+            margin-top: 56px;
+            margin-left: 240px;
+            padding: 24px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .video-container {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .video-card {
+            width: calc(33.333% - 16px);
+            margin: 0 8px 40px;
+            cursor: pointer;
+        }
+
+        .thumbnail {
+            width: 100%;
+            height: 0;
+            padding-top: 56.25%;
+            /* 16:9 比例 */
+            background-color: #eee;
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .thumbnail img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-info {
+            display: flex;
+        }
+
+        .channel-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .video-details {
+            flex: 1;
+        }
+
+        .video-title {
+            font-weight: bold;
+            margin-bottom: 6px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .channel-name {
+            color: #606060;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .video-stats {
+            color: #606060;
+            font-size: 14px;
+        }
+
+        /* 短视频部分 */
+        .shorts-section {
+            width: 100%;
+            margin-bottom: 40px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .shorts-container {
+            display: flex;
+            overflow-x: auto;
+            padding-bottom: 16px;
+        }
+
+        .short-card {
+            width: 180px;
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+
+        .short-thumbnail {
+            width: 100%;
+            height: 320px;
+            background-color: #eee;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .short-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .short-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .short-views {
+            color: #606060;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 顶部导航栏 -->
+    <div class="header">
+        <div class="header-left">
+            <div class="menu-icon">☰</div>
+            <div class="logo">
+                <span>YouTube</span>
+            </div>
+        </div>
+
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="搜索">
+            <button class="search-btn">🔍</button>
+        </div>
+
+        <div class="header-right">
+            <div class="header-icon">📹</div>
+            <div class="header-icon">🔔</div>
+            <div class="header-icon">👤</div>
+        </div>
+    </div>
+
+    <!-- 侧边栏 -->
+    <div class="sidebar">
+        <div class="sidebar-item">
+            <div class="sidebar-icon">🏠</div>
+            <div>首页</div>
+        </div>
+        <div class="sidebar-item">
+            <div class="sidebar-icon">🎬</div>
+            <div>Shorts</div>
+        </div>
+        <div class="sidebar-item">
+            <div class="sidebar-icon">📺</div>
+            <div>订阅</div>
+        </div>
+        <div class="sidebar-item">
+            <div class="sidebar-icon">📚</div>
+            <div>历史记录</div>
+        </div>
+        <div class="sidebar-item">
+            <div class="sidebar-icon">⏱️</div>
+            <div>稍后观看</div>
+        </div>
+        <div class="sidebar-item">
+            <div class="sidebar-icon">👍</div>
+            <div>我的视频</div>
+        </div>
+        <div class="sidebar-item">
+            <div class="sidebar-icon">⏯️</div>
+            <div>我的播放列表</div>
+        </div>
+    </div>
+
+    <!-- 主内容区 -->
+    <div class="content">
+        <!-- 视频部分 -->
+        <div class="video-container">
+            <!-- 视频卡片1 -->
+            <div class="video-card">
+                <div class="thumbnail">
+                    <img src="https://via.placeholder.com/480x270" alt="视频缩略图">
+                </div>
+                <div class="video-info">
+                    <div class="channel-avatar"></div>
+                    <div class="video-details">
+                        <div class="video-title">今天玩坦克世界，这个地图太难玩了</div>
+                        <div class="channel-name">坦克世界</div>
+                        <div class="video-stats">10万次观看 · 2天前</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 视频卡片2 -->
+            <div class="video-card">
+                <div class="thumbnail">
+                    <img src="https://via.placeholder.com/480x270" alt="视频缩略图">
+                </div>
+                <div class="video-info">
+                    <div class="channel-avatar"></div>
+                    <div class="video-details">
+                        <div class="video-title">南疆旅行记：这次去了这些人文景点？</div>
+                        <div class="channel-name">旅行频道</div>
+                        <div class="video-stats">27万次观看 · 2个月前</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 视频卡片3 -->
+            <div class="video-card">
+                <div class="thumbnail">
+                    <img src="https://via.placeholder.com/480x270" alt="视频缩略图">
+                </div>
+                <div class="video-info">
+                    <div class="channel-avatar"></div>
+                    <div class="video-details">
+                        <div class="video-title">如何赚钱 | 我的理财经验分享</div>
+                        <div class="channel-name">小七财经</div>
+                        <div class="video-stats">11万次观看 · 2个月前</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shorts部分 -->
+        <div class="shorts-section">
+            <div class="section-header">
+                <h2>Shorts</h2>
+            </div>
+            <div class="shorts-container">
+                <!-- Short卡片1 -->
+                <div class="short-card">
+                    <div class="short-thumbnail">
+                        <img src="https://via.placeholder.com/180x320" alt="Short缩略图">
+                    </div>
+                    <div class="short-title">搞笑短视频</div>
+                    <div class="short-views">10万次观看</div>
+                </div>
+
+                <!-- Short卡片2 -->
+                <div class="short-card">
+                    <div class="short-thumbnail">
+                        <img src="https://via.placeholder.com/180x320" alt="Short缩略图">
+                    </div>
+                    <div class="short-title">Ace Pro 2相机开箱</div>
+                    <div class="short-views">5.2万次观看</div>
+                </div>
+
+                <!-- Short卡片3 -->
+                <div class="short-card">
+                    <div class="short-thumbnail">
+                        <img src="https://via.placeholder.com/180x320" alt="Short缩略图">
+                    </div>
+                    <div class="short-title">国旗飘扬</div>
+                    <div class="short-views">8.7万次观看</div>
+                </div>
+
+                <!-- Short卡片4 -->
+                <div class="short-card">
+                    <div class="short-thumbnail">
+                        <img src="https://via.placeholder.com/180x320" alt="Short缩略图">
+                    </div>
+                    <div class="short-title">美食制作教程</div>
+                    <div class="short-views">12万次观看</div>
+                </div>
+
+                <!-- Short卡片5 -->
+                <div class="short-card">
+                    <div class="short-thumbnail">
+                        <img src="https://via.placeholder.com/180x320" alt="Short缩略图">
+                    </div>
+                    <div class="short-title">运动相机测评</div>
+                    <div class="short-views">3.5万次观看</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
