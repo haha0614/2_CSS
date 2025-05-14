@@ -1,6 +1,6 @@
 {
     "files.autoSave": "onFocusChange",
-    "editor.fontSize": 18,
+    "editor.fontSize": 16,
     "editor.fontFamily": "'JetBrains Mono'",
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
@@ -10,7 +10,7 @@
     "editor.cursorSurroundingLines": 0,
     "editor.formatOnType": true,
     "diffEditor.codeLens": false,
-    "editor.minimap.enabled": true,
+    "editor.minimap.enabled": false,
     "files.trimFinalNewlines": false,
     "files.trimTrailingWhitespace": true,
     "workbench.layoutControl.type": "both",
