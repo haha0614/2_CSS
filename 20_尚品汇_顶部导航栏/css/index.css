@@ -1,19 +1,64 @@
-.topbar{
-    height: 30px;
-    background-color: rgba(236, 236, 236, 1);
-}
-
+/* 基础设置 */
 .container {
-    width: 1190px;
-    margin: 0 auto;
+  width: 1190px;
+  margin: 0 auto;
 }
 
-.topbar_item {
-    font-family: "PingFang SC", "vivo sans", sans-serif;
-    font-size: 12px;
-    line-height: 30px;
+/* #region顶部导航条start */
+.topbar {
+  height: 30px;
+  background-color: rgba(236, 236, 236, 1);
+  font-weight: 500;
+  color: rgba(102, 102, 102, 1);
+  /* font-size: 0;   */
 }
 
-.topbar_item_welcome {
-    float: left;
+.topbar_container {
+  background-color: rgba(236, 236, 236, 1);
 }
+
+.topbar_left {
+  height: 30px;
+  line-height: 30px;
+  font-size: 0;
+}
+
+.topbar_left span,
+.topbar_left a {
+  font-size: 12px;
+}
+
+.topbar_left .welcome {
+  font-weight: 400;
+  margin-right: 28px;
+}
+
+.topbar_left .login {
+  padding-right: 10px;
+  border-right: 1px solid black;
+  margin-right: 10px;
+}
+
+.topbar_right {
+  height: 30px;
+  line-height: 30px;
+}
+
+.topbar_right li {
+  /* display: inline; */
+  float: left;
+}
+
+.topbar_right a {
+  font-size: 12px;
+  margin-right: 15px;
+  padding-right: 15px;
+  border-right: 1px solid black;
+}
+/* 导航栏右侧的第一个ul元素的最后一个li元素的a标签取消边框 */
+.topbar_right > ul:first-child > li:last-child a {
+  border-right: 0;
+  margin-right: 0;
+  padding-right: 0;
+}
+/*  #endregion顶部导航条end */
