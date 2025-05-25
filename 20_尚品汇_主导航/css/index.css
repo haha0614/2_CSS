@@ -67,7 +67,6 @@
 /* 头部区域样式 */
 .header {
   height: 120px;
-  background-color: skyblue;
 }
 /* 头部右侧搜索表单样式 */
 .header .container .search {
