@@ -275,16 +275,127 @@
 }
 .master_contant .slide_other .icon_nav ul {
   height: 70px;
+}
+.master_contant .slide_other .icon_nav ul:first-child {
   margin-top: 16px;
-  margin-bottom: 1px;
-  padding: 0 5px;
+}
+.master_contant .slide_other .icon_nav ul:nth-child(2) {
+  margin: 17px 0;
 }
 .master_contant .slide_other .icon_nav ul li {
   float: left;
+  width: 48px;
+  height: 70px;
   margin: 0 11px;
   text-align: center;
   font-size: 14px;
+  line-height: 22px;
   color: #000;
   font-weight: bold;
+}
+.master_contant .slide_other .icon_nav ul li:first-child {
+  margin-left: 16px;
+}
+.master_contant .slide_other .icon_nav ul li .picture {
+  background-image: url(../images/精灵图-侧边功能.png);
+  background-repeat: no-repeat;
+  height: 48px;
+  width: 48px;
+}
+.master_contant
+  .slide_other
+  .icon_nav
+  ul:nth-child(1)
+  li:nth-child(1)
+  .picture {
+  background-position: 0 0;
+}
+.master_contant
+  .slide_other
+  .icon_nav
+  ul:nth-child(1)
+  li:nth-child(2)
+  .picture {
+  background-position: -48px 0;
+}
+.master_contant
+  .slide_other
+  .icon_nav
+  ul:nth-child(1)
+  li:nth-child(3)
+  .picture {
+  background-position: -96px 0;
+}
+.master_contant
+  .slide_other
+  .icon_nav
+  ul:nth-child(1)
+  li:nth-child(4)
+  .picture {
+  background-position: -144px 0;
+}
+.master_contant
+  .slide_other
+  .icon_nav
+  ul:nth-child(2)
+  li:nth-child(1)
+  .picture {
+  background-position: 0 -48px;
+}
+.master_contant
+  .slide_other
+  .icon_nav
+  ul:nth-child(2)
+  li:nth-child(2)
+  .picture {
+  background-position: -48px -48px;
+}
+.master_contant
+  .slide_other
+  .icon_nav
+  ul:nth-child(2)
+  li:nth-child(3)
+  .picture {
+  background-position: -96px -48px;
+}
+.master_contant
+  .slide_other
+  .icon_nav3
+  ul:nth-child(2)
+  li:nth-child(4)
+  .picture {
+  background-position: -144px -48px;
+}
+.master_contant
+  .slide_other
+  .icon_nav
+  ul:nth-child(3)
+  li:nth-child(1)
+  .picture {
+  background-position: 0 -96px;
+}
+.master_contant
+  .slide_other
+  .icon_nav
+  ul:nth-child(3)
+  li:nth-child(2)
+  .picture {
+  background-position: -48px -96px;
+}
+.master_contant
+  .slide_other
+  .icon_nav
+  ul:nth-child(3)
+  li:nth-child(3)
+  .picture {
+  background-position: -96px -96px;
+}
+.master_contant
+  .slide_other
+  .icon_nav
+  ul:nth-child(3)
+  li:nth-child(4)
+  .picture {
+  background-position: -144px -96px;
 }
 /* #endregion内容区end */
